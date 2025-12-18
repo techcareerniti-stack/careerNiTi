@@ -5,282 +5,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>CareerNiti</title>
     <link rel="stylesheet" href="assets/css/output.css">
-    
+    <link rel="stylesheet" href="assets/css/index.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link rel="icon" sizes="16x16" type="image/png" href="assets/images/title-logo.png">
+     <link rel="icon" type="image/png" href="./assets/images/title-logo.png">
+     
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    <style>
-        #hoverModal {
-            display: none;
-            position: fixed;
-            z-index: 9999;
-            background: white;
-            border-radius: 12px;
-            box-shadow: 0 20px 40px rgba(0,0,0,0.15);
-            border: 1px solid #e5e7eb;
-            min-width: 300px;
-            max-width: 350px;
-            animation: fadeIn 0.2s ease-out;
-        }
-        
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(-10px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-        
-        .modal-arrow {
-            position: absolute;
-            top: -8px;
-            left: 50%;
-            transform: translateX(-50%) rotate(45deg);
-            width: 16px;
-            height: 16px;
-            background: white;
-            border-left: 1px solid #e5e7eb;
-            border-top: 1px solid #e5e7eb;
-        }
-        
-        .hover-modal-content {
-            max-height: 400px;
-            overflow-y: auto;
-        }
-        
-        .hover-modal-content::-webkit-scrollbar {
-            width: 4px;
-        }
-        
-        .hover-modal-content::-webkit-scrollbar-track {
-            background: #f1f1f1;
-            border-radius: 4px;
-        }
-        
-        .hover-modal-content::-webkit-scrollbar-thumb {
-            background: #c1c1c1;
-            border-radius: 4px;
-        }
-        
-        #mobileModal {
-            display: none;
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            z-index: 10000;
-            background: rgba(0,0,0,0.5);
-        }
-        
-        .mobile-modal-content {
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            right: 0;
-            background: white;
-            border-radius: 20px 20px 0 0;
-            max-height: 80vh;
-            animation: slideUp 0.3s ease-out;
-        }
-        
-        @keyframes slideUp {
-            from { transform: translateY(100%); }
-            to { transform: translateY(0); }
-        }
-        
-        .modal-tab {
-            transition: all 0.2s ease;
-        }
-        
-        .modal-tab.active {
-            color: #ea580c;
-            border-bottom: 2px solid #ea580c;
-        }
-        
-        .modal-item {
-            transition: all 0.2s ease;
-        }
-        
-        .modal-item:hover {
-            background-color: #fff7ed;
-            border-color: #fed7aa;
-        }
-        
-        /* Infinite scroll styles */
-        .marquee-container {
-            overflow: hidden;
-            white-space: nowrap;
-            position: relative;
-        }
-        
-        .marquee-content {
-            display: inline-block;
-            white-space: nowrap;
-            animation: marquee 30s linear infinite;
-        }
-        
-        .marquee-content:hover {
-            animation-play-state: paused;
-        }
-        
-        @keyframes marquee {
-            0% {
-                transform: translateX(0);
-            }
-            100% {
-                transform: translateX(-50%);
-            }
-        }
-        
-        /* Partners marquee */
-        .partners-marquee-container {
-            overflow: hidden;
-            position: relative;
-        }
-        
-        .partners-marquee-content {
-            display: flex;
-            animation: partnersMarquee 25s linear infinite;
-        }
-        
-        .partners-marquee-content:hover {
-            animation-play-state: paused;
-        }
-        
-        @keyframes partnersMarquee {
-            0% {
-                transform: translateX(0);
-            }
-            100% {
-                transform: translateX(-50%);
-            }
-        }
-        
-        /* Testimonials infinite scroll */
-        @keyframes infiniteScroll {
-            0% {
-                transform: translateX(0);
-            }
-            100% {
-                transform: translateX(calc(-320px * 7));
-            }
-        }
-        
-        .testimonials-scroll-container {
-            position: relative;
-            overflow: hidden;
-        }
-        
-        .animate-infinite-scroll {
-            display: flex;
-            animation: infiniteScroll 120s linear infinite;
-            width: max-content;
-        }
-        
-        .animate-infinite-scroll:hover {
-            animation-play-state: paused;
-        }
-        
-        .gradient-overlay-left {
-            position: absolute;
-            left: 0;
-            top: 0;
-            bottom: 0;
-            width: 60px;
-            background: linear-gradient(to right, #f9fafb, transparent);
-            z-index: 10;
-            pointer-events: none;
-        }
-        
-        .gradient-overlay-right {
-            position: absolute;
-            right: 0;
-            top: 0;
-            bottom: 0;
-            width: 60px;
-            background: linear-gradient(to left, #f9fafb, transparent);
-            z-index: 10;
-            pointer-events: none;
-        }
-        
-        /* Remove side margins/padding for specific sections */
-        .testimonials-full-width {
-            margin-left: calc(50% - 50vw);
-            margin-right: calc(50% - 50vw);
-            width: 100vw;
-            position: relative;
-            left: 50%;
-            right: 50%;
-            transform: translateX(-50%);
-        }
-        
-        .associations-full-width {
-            margin-left: calc(50% - 50vw);
-            margin-right: calc(50% - 50vw);
-            width: 100vw;
-            position: relative;
-            left: 50%;
-            right: 50%;
-            transform: translateX(-50%);
-        }
-        
-        @media (max-width: 768px) {
-            #hoverModal {
-                display: none !important;
-            }
-            
-            .marquee-content {
-                animation: marquee 20s linear infinite;
-            }
-            
-            .partners-marquee-content {
-                animation: partnersMarquee 20s linear infinite;
-            }
-            
-            @keyframes infiniteScroll {
-                0% {
-                    transform: translateX(0);
-                }
-                100% {
-                    transform: translateX(calc(-288px * 7));
-                }
-            }
-            
-            .animate-infinite-scroll {
-                animation-duration: 140s;
-            }
-            
-            .gradient-overlay-left,
-            .gradient-overlay-right {
-                width: 40px;
-            }
-        }
-        
-        @media (max-width: 640px) {
-            @keyframes infiniteScroll {
-                0% {
-                    transform: translateX(0);
-                }
-                100% {
-                    transform: translateX(calc(-256px * 7));
-                }
-            }
-            
-            .animate-infinite-scroll {
-                animation-duration: 160s;
-            }
-            
-            .gradient-overlay-left,
-            .gradient-overlay-right {
-                width: 30px;
-            }
-        }
-        
-        /* Poppins font */
-        .poppins-regular {
-            font-family: 'Poppins', sans-serif;
-        }
-    </style>
+   
 </head>
-<body class="font-sans poppins-regular">
+<body class="bg-orange-50 font-sans antialiased">
     <?php include 'includes/navbar.php'; ?>
     
     <?php
@@ -396,14 +128,14 @@
             <h1 class="text-4xl md:text-5xl text-white font-bold mb-2 mt-20 text-center">
                 Choose the right career with
             </h1>
-            <h2 class="text-3xl md:text-4xl">
+            <h2 class="text-3xl md:text-4xl text-white font-bold">
                 Careerniti
             </h2>
             <p class="text-white text-lg mb-8 opacity-90">
                 Guide your future with us
             </p>
 
-            <div class="w-full max-w-3xl relative mb-8 text-white">
+            <div class="w-full max-w-3xl relative mb-20 text-white">
                 <input
                     type="text"
                     placeholder="Search for careers..."
@@ -504,7 +236,7 @@
     </div>
 
     <!-- Top to Explore Section -->
-    <div class="container mx-auto px-4 sm:px-6 lg:px-8 mb-20">
+    <div class="container mx-auto px-4 sm:px-6 lg:px-8 ">
         <h1 class="text-4xl font-bold text-center mb-3">Top to Explore</h1>
         
         <div class="mb-8">
@@ -815,8 +547,8 @@
 
     <!-- Associations Section - Full Width -->
     <div class="associations-full-width bg-white py-12 md:py-16">
-        <div class="text-center mb-8 md:mb-12">
-            <h1 class="text-4xl font-bold text-center mb-10">
+        <div class="text-center mb-2 md:mb-12">
+            <h1 class="text-4xl font-bold text-center mb-2">
                 Associates With Us
             </h1>
         </div>
@@ -1218,6 +950,6 @@
         
         console.log('All systems ready! Click any category button to test.');
     </script>
-    <script src="assets/js/navbar.js"></script>
+   
 </body>
 </html>
