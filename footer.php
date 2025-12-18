@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Footer - Careerniti</title>
-  <script src="https://cdn.tailwindcss.com"></script>
+ 
 </head>
 <body>
   <!-- Footer -->
@@ -94,13 +94,13 @@
           <div class="flex flex-col md:flex-row justify-between items-center space-y-6 md:space-y-0">
             <!-- Logo -->
             <div class="flex items-center">
-              <img 
-                src="assets/images/Careerniti_logo.png" 
-                alt="Careerniti Logo" 
-                class="w-20 h-auto"
-                
-              >
-            </div>
+  <img 
+    src="assets/images/Careerniti_logo.png"
+    alt="Careerniti Logo"
+    class="h-8 sm:h-10 md:h-12 lg:h-14 xl:h-16 w-auto object-contain"
+  >
+</div>
+
             
             <!-- Social Media Icons -->
             <div class="flex items-center space-x-4">
