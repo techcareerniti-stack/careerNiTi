@@ -28,7 +28,7 @@
         <!-- Login Button (LAST ITEM) -->
         <a
           href="login.php"
-          class="border border-orange-500 text-orange-500 px-8 py-1 rounded-md"
+          class="border border-orange-500 text-orange-500 px-8 py-1 rounded-md hover:bg-orange-500 hover:text-white transition-colors duration-200"
         >
           Login
         </a>
@@ -50,17 +50,17 @@
   <!-- Mobile Menu -->
   <div id="mobile-menu" class="hidden md:hidden bg-white border-t shadow-lg">
     <div class="px-4 py-4 space-y-3">
-      <a href="index.php" class="block text-gray-700 no-underline">Home</a>
-      <a href="career.php" class="block text-gray-700 no-underline">Career</a>
-      <a href="exam.php" class="block text-gray-700 no-underline">Exam</a>
-      <a href="admission.php" class="block text-gray-700 no-underline">Admission</a>
-      <a href="notification.php" class="block text-gray-700 no-underline">Notification</a>
-      <a href="about.php" class="block text-gray-700 no-underline">About Us</a>
-      <a href="contact.php" class="block text-gray-700 no-underline">Contact Us</a>
+      <a href="index.php" class="block text-gray-700 no-underline py-2 hover:bg-gray-50">Home</a>
+      <a href="career.php" class="block text-gray-700 no-underline py-2 hover:bg-gray-50">Career</a>
+      <a href="exam.php" class="block text-gray-700 no-underline py-2 hover:bg-gray-50">Exam</a>
+      <a href="admission.php" class="block text-gray-700 no-underline py-2 hover:bg-gray-50">Admission</a>
+      <a href="notification.php" class="block text-gray-700 no-underline py-2 hover:bg-gray-50">Notification</a>
+      <a href="about.php" class="block text-gray-700 no-underline py-2 hover:bg-gray-50">About Us</a>
+      <a href="contact.php" class="block text-gray-700 no-underline py-2 hover:bg-gray-50">Contact Us</a>
 
       <a
         href="login.php"
-        class="border border-orange-500 text-orange-500 px-8 py-1 rounded-md"
+        class="inline-block border border-orange-500 text-orange-500 px-8 py-2 rounded-md hover:bg-orange-500 hover:text-white transition-colors duration-200"
       >
         Login
       </a>
@@ -71,16 +71,44 @@
 <!-- SPACE FOR FIXED NAVBAR -->
 <div class="h-16"></div>
 
-<!-- Mobile Menu Toggle Script -->
+<!-- Mobile Menu Toggle Script - FIXED VERSION -->
 <script>
+// Check if navbar script already ran
+if (!window.navbarInitialized) {
+  window.navbarInitialized = true;
+  
   const btn = document.getElementById("menu-btn");
   const menu = document.getElementById("mobile-menu");
   const openIcon = document.getElementById("open-icon");
   const closeIcon = document.getElementById("close-icon");
-
-  btn.addEventListener("click", () => {
-    menu.classList.toggle("hidden");
-    openIcon.classList.toggle("hidden");
-    closeIcon.classList.toggle("hidden");
-  });
+  
+  // Only add event listeners if elements exist
+  if (btn && menu && openIcon && closeIcon) {
+    btn.addEventListener("click", (e) => {
+      e.stopPropagation(); // Prevent event bubbling
+      menu.classList.toggle("hidden");
+      openIcon.classList.toggle("hidden");
+      closeIcon.classList.toggle("hidden");
+    });
+    
+    // Close menu when clicking outside
+    document.addEventListener('click', function(event) {
+      if (!menu.contains(event.target) && !btn.contains(event.target)) {
+        menu.classList.add('hidden');
+        openIcon.classList.remove('hidden');
+        closeIcon.classList.add('hidden');
+      }
+    });
+    
+    // Close menu when clicking a link
+    const mobileLinks = menu.querySelectorAll('a');
+    mobileLinks.forEach(link => {
+      link.addEventListener('click', () => {
+        menu.classList.add('hidden');
+        openIcon.classList.remove('hidden');
+        closeIcon.classList.add('hidden');
+      });
+    });
+  }
+}
 </script>
