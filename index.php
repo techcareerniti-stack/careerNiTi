@@ -7,15 +7,12 @@
     <link rel="stylesheet" href="assets/css/output.css">
     <link rel="stylesheet" href="assets/css/index.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-     <link rel="icon" type="image/png" href="./assets/images/title-logo.png">
-     
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-   
+    <link rel="icon" type="image/png" href="./assets/images/title-logo.png">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">  
 </head>
-<body class="bg-orange-50 font-sans antialiased">
-    <?php include 'includes/navbar.php'; ?>
-    
-    <?php
+<body>
+<?php include 'includes/navbar.php'; ?> 
+ <?php
     $quickCategories = [
         [
             'id' => 'engineering',
@@ -115,80 +112,31 @@
         ]
     ];
     ?>
-    
     <div class="relative h-[500px] w-full mb-7">
-        <div 
-            class="absolute inset-0 bg-cover bg-center h-full w-full"
-            style="background-image: url('assets/images/misssion.jpg');"
-        >
+        <div class="absolute inset-0 bg-cover bg-center h-full w-full" style="background-image: url('assets/images/misssion.jpg');">
             <div class="absolute inset-0 bg-black/40"></div>
         </div>
-
         <div class="relative h-full flex flex-col items-center justify-center px-4">
-            <h1 class="text-4xl md:text-5xl text-white font-bold mb-2 mt-20 text-center">
-                Choose the right career with
-            </h1>
-            <h2 class="text-3xl md:text-4xl text-white font-bold">
-                Careerniti
-            </h2>
-            <p class="text-white text-lg mb-8 opacity-90">
-                Guide your future with us
-            </p>
-
+            <h1 class="text-4xl md:text-5xl text-white font-bold mb-2 mt-20 text-center">Choose the right career with</h1>
+            <h2 class="text-3xl md:text-4xl text-white font-bold">Careerniti</h2>
+            <p class="text-white text-lg mb-8 opacity-90">Guide your future with us</p>
             <div class="w-full max-w-3xl relative mb-20 text-white">
-                <input
-                    type="text"
-                    placeholder="Search for careers..."
-                    class="w-full px-6 py-4 rounded-full text-lg focus:outline-none shadow-lg focus:ring-2 focus:ring-orange-400 text-gray-800"
-                />
+                <input type="text" placeholder="Search for careers..." class="w-full px-6 py-4 rounded-full text-lg focus:outline-none shadow-lg focus:ring-2 focus:ring-orange-400 text-gray-800"/>
                 <button class="absolute right-4 top-1/2 -translate-y-1/2">
-                    <svg
-                        class="w-6 h-6 text-gray-500 hover:text-orange-500"
-                        fill="none"
-                        stroke="currentColor"
-                        viewBox="0 0 24 24"
-                    >
-                        <path
-                            stroke-linecap="round"
-                            stroke-linejoin="round"
-                            stroke-width="2"
-                            d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
-                        />
+                    <svg class="w-6 h-6 text-gray-500 hover:text-orange-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/>
                     </svg>
                 </button>
             </div>
-
             <div class="w-full max-w-4xl mt-6">
                 <div class="flex flex-wrap justify-center gap-4">
                     <?php foreach ($quickCategories as $item): ?>
-                    <button
-                        type="button"
-                        class="
-          flex items-center justify-center gap-1
-          bg-white/10 backdrop-blur-sm text-white
-          border border-white/20 shadow-md
-          rounded-lg
-          
-          /* Auto Resize Buttons */
-          flex-1                 /* all equal width */
-          min-w-0                /* allow shrinking */
-          py-2 sm:py-3
-          
-          /* Auto Resize Text */
-          text-[10px] sm:text-sm md:text-base
-          
-          /* Auto Resize Icons */
-          [&>span:first-child]:text-sm 
-          sm:[&>span:first-child]:text-xl
-          
-          hover:bg-white/20 transition-all duration-300 category-button
-        "
+                    <button type="button" class="flex items-center justify-center gap-1 bg-white/10 backdrop-blur-sm text-white border border-white/20 shadow-md rounded-lg flex-1 min-w-0 py-2 sm:py-3 text-[10px] sm:text-sm md:text-base [&>span:first-child]:text-sm sm:[&>span:first-child]:text-xl hover:bg-white/20 transition-all duration-300 category-button"
                         data-category='<?php echo htmlspecialchars(json_encode($item), ENT_QUOTES, 'UTF-8'); ?>'
                         onmouseenter="handleCategoryHover(this, event)"
                         onmouseleave="handleCategoryLeave()"
-                        onclick="handleCategoryClick(this, event)"
-                    >
-                        <span class="text-xl"><?php echo $item['icon']; ?></span>
+                        onclick="handleCategoryClick(this, event)">
+                     <span class="text-xl"><?php echo $item['icon']; ?></span>
                         <span class="font-semibold whitespace-nowrap">
                             <?php echo htmlspecialchars($item['name']); ?>
                         </span>
@@ -198,18 +146,12 @@
             </div>
         </div>
     </div>
-
-    <!-- Notification & Updates Section -->
+ <!-- Notification & Updates Section -->
     <div class="container mx-auto px-4 sm:px-6 lg:px-8 mb-12 md:mb-16">
         <div class="text-center mb-8 md:mb-12">
-            <h2 class="text-2xl sm:text-3xl md:text-4xl font-bold text-gray-900 mb-3">
-                Notification & Updates
-            </h2>
-            <p class="text-gray-600 text-sm sm:text-base">
-                Stay updated with the latest career opportunities and exam notifications
-            </p>
+            <h2 class="text-2xl sm:text-3xl md:text-4xl font-bold text-gray-900 mb-3"> Notification & Updates</h2>
+            <p class="text-gray-600 text-sm sm:text-base">Stay updated with the latest career opportunities and exam notifications</p>
         </div>
-        
         <div class="marquee-container bg-gradient-to-r from-orange-50 to-orange-100 rounded-xl p-4 border border-orange-200">
             <div class="marquee-content">
                 <?php
@@ -234,11 +176,9 @@
             </div>
         </div>
     </div>
-
     <!-- Top to Explore Section -->
     <div class="container mx-auto px-4 sm:px-6 lg:px-8 ">
-        <h1 class="text-4xl font-bold text-center mb-3">Top to Explore</h1>
-        
+        <h1 class="text-4xl font-bold text-center mb-3">Top to Explore</h1>    
         <div class="mb-8">
             <h1 class="text-xl text-gray-600 text-center mb-5">Find cities for you</h1>
             <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-4 sm:gap-5 justify-items-center">
@@ -262,7 +202,6 @@
                 </div>
             </div>
         </div>
-
         <div class="mb-8">
             <h1 class="text-xl text-gray-600 text-center mb-2">Find colleges for you</h1>
             <div class="flex flex-wrap justify-center gap-5">
@@ -302,7 +241,6 @@
                 </div>
             </div>
         </div>
-
         <div class="mb-5">
             <h1 class="text-xl text-gray-600 text-center mb-3">Find courses for you</h1>
             <div class="flex flex-wrap justify-center gap-5">
@@ -329,9 +267,7 @@
                             </div>
                             <hr />
                             <div class="pb-2">
-                                <button class="flex items-center justify-center w-full text-orange-500 hover:text-orange-600 font-medium transition-colors">
-                                    Course overview →
-                                </button>
+                                <button class="flex items-center justify-center w-full text-orange-500 hover:text-orange-600 font-medium transition-colors">Course overview →</button>
                             </div>
                         </div>
                     </div>
@@ -339,87 +275,41 @@
             </div>
         </div>
     </div>
-
     <!-- Our Services Section -->
     <div class="container mx-auto px-4 sm:px-6 lg:px-8 py-12 md:py-16">
         <div class="text-center mb-6 md:mb-16">
-            <h2 class="text-2xl sm:text-3xl md:text-4xl font-bold text-gray-900 mb-3">
-                Our Services
-            </h2>
-            <p class="text-gray-600 text-sm sm:text-base">
-                Comprehensive career solutions tailored for your success
-            </p>
+            <h2 class="text-2xl sm:text-3xl md:text-4xl font-bold text-gray-900 mb-3">Our Services</h2>
+            <p class="text-gray-600 text-sm sm:text-base"> Comprehensive career solutions tailored for your success</p>
         </div>
-
         <div class="space-y-12 md:space-y-16">
             <div class="flex flex-col lg:flex-row items-center gap-8 bg-white rounded-2xl border border-gray-200 p-6 md:p-8">
                 <div class="lg:w-1/2">
-                    <img 
-                        src="assets/images/serviceCareer.png" 
-                        alt="Career Guidance" 
-                        class="w-full sm:w-3/4 md:w-1/2 lg:w-3/5 xl:w-2/3 h-auto object-contain mx-auto"
-                    />
+                    <img src="assets/images/serviceCareer.png" alt="Career Guidance" class="w-full sm:w-3/4 md:w-1/2 lg:w-3/5 xl:w-2/3 h-auto object-contain mx-auto"/>
                 </div>
                 <div class="lg:w-1/2">
                     <h3 class="text-lg sm:text-xl md:text-2xl lg:text-3xl font-bold text-gray-900 mb-4">Career Guidance</h3>
-                    <p class="text-gray-600 mb-6 text-justify leading-relaxed">
-                        Career guidance works by combining professional expertise with personalized assessment to help 
-                        individuals identify their skills, interests, and goals. It then provides actionable insights 
-                        and strategies to navigate the job market effectively, empowering individuals to make informed 
-                        career decisions and achieve their aspirations.
-                    </p>
-                    <button class="px-6 py-3 bg-gradient-to-r from-orange-500 to-red-500 text-white font-medium rounded-lg hover:shadow-lg transition-all">
-                        Take a Free Career Guidance Session »
-                    </button>
+                    <p class="text-gray-600 mb-6 text-justify leading-relaxed">Career guidance works by combining professional expertise with personalized assessment to help individuals identify their skills, interests, and goals. It then provides actionable insights and strategies to navigate the job market effectively, empowering individuals to make informed career decisions and achieve their aspirations.</p>
+                    <button class="px-6 py-3 bg-gradient-to-r from-orange-500 to-red-500 text-white font-medium rounded-lg hover:shadow-lg transition-all">Take a Free Career Guidance Session »</button>
                 </div>
             </div>
-
             <div class="flex flex-col lg:flex-row-reverse items-center gap-8 bg-white rounded-2xl border border-gray-200 p-6 md:p-8">
-                <div class="lg:w-1/2">
-                    <img 
-                        src="assets/images/serviceEntrance.png" 
-                        alt="Entrance Exam Guidance" 
-                        class="w-full sm:w-3/4 md:w-1/2 lg:w-3/5 xl:w-2/3 h-auto object-contain mx-auto"
-                    />
-                </div>
+                <div class="lg:w-1/2"><img src="assets/images/serviceEntrance.png" alt="Entrance Exam Guidance" class="w-full sm:w-3/4 md:w-1/2 lg:w-3/5 xl:w-2/3 h-auto object-contain mx-auto"/></div>
                 <div class="lg:w-1/2">
                     <h3 class="text-lg sm:text-xl md:text-2xl lg:text-3xl font-bold text-gray-900 mb-4">Entrance Exam Guidance</h3>
-                    <p class="text-gray-600 mb-6 text-justify leading-relaxed">
-                        Career counseling operates by offering one-on-one sessions with trained counselors who assess 
-                        an individual's strengths, weaknesses, and aspirations. Through a holistic approach, they provide 
-                        tailored advice, resources, and strategies to guide clients in making informed career choices 
-                        and achieving their professional goals.
-                    </p>
-                    <button class="px-6 py-3 bg-gradient-to-r from-blue-500 to-purple-600 text-white font-medium rounded-lg hover:shadow-lg transition-all">
-                        Take a Free Entrance Guidance Session »
-                    </button>
+                    <p class="text-gray-600 mb-6 text-justify leading-relaxed">Career counseling operates by offering one-on-one sessions with trained counselors who assess an individual's strengths, weaknesses, and aspirations. Through a holistic approach, they provide tailored advice, resources, and strategies to guide clients in making informed career choices and achieving their professional goals.</p>
+                    <button class="px-6 py-3 bg-gradient-to-r from-blue-500 to-purple-600 text-white font-medium rounded-lg hover:shadow-lg transition-all">Take a Free Entrance Guidance Session »</button>
                 </div>
             </div>
-
             <div class="flex flex-col lg:flex-row items-center gap-8 bg-white rounded-2xl border border-gray-200 p-6 md:p-8">
-                <div class="lg:w-1/2">
-                    <img 
-                        src="assets/images/serviceAdmission.png" 
-                        alt="Admission Guidance" 
-                        class="w-full sm:w-3/4 md:w-1/2 lg:w-3/5 xl:w-2/3 object-contain mx-auto"
-                    />
-                </div>
+                <div class="lg:w-1/2"><img src="assets/images/serviceAdmission.png" alt="Admission Guidance" class="w-full sm:w-3/4 md:w-1/2 lg:w-3/5 xl:w-2/3 object-contain mx-auto"/></div>
                 <div class="lg:w-1/2">
                     <h3 class="text-lg sm:text-xl md:text-2xl lg:text-3xl font-bold text-gray-900 mb-4">Admission Guidance</h3>
-                    <p class="text-gray-600 mb-6 text-justify leading-relaxed">
-                        Taking an aptitude test is crucial for finding the best career fit, as it assesses one's innate 
-                        abilities and interests, guiding individuals towards professions that align with their natural 
-                        strengths. This personalized insight helps in making informed career choices, leading to greater 
-                        job satisfaction and success.
-                    </p>
-                    <button class="px-6 py-3 bg-gradient-to-r from-green-500 to-teal-600 text-white font-medium rounded-lg hover:shadow-lg transition-all">
-                        Take a Free Admission Guidance Session »
-                    </button>
+                    <p class="text-gray-600 mb-6 text-justify leading-relaxed">Taking an aptitude test is crucial for finding the best career fit, as it assesses one's innate abilities and interests, guiding individuals towards professions that align with their natural strengths. This personalized insight helps in making informed career choices, leading to greater job satisfaction and success.</p>
+                    <button class="px-6 py-3 bg-gradient-to-r from-green-500 to-teal-600 text-white font-medium rounded-lg hover:shadow-lg transition-all">Take a Free Admission Guidance Session »</button>
                 </div>
             </div>
         </div>
     </div>
-
     <!-- Statistics Section -->
     <div class="bg-orange-500 text-white py-12 md:py-16">
         <div class="container mx-auto px-4 sm:px-6 lg:px-8">
@@ -439,19 +329,14 @@
             </div>
         </div>
     </div>
-
     <!-- Student Testimonials Section - Full Width -->
     <div class="testimonials-full-width bg-gradient-to-b from-gray-50 to-white py-12 md:py-16 overflow-hidden">
         <div class="text-center mb-10 md:mb-14">
-            <h2 class="text-3xl sm:text-4xl md:text-5xl font-bold text-gray-900 mb-3">
-                Student Testimonials
-            </h2>
+            <h2 class="text-3xl sm:text-4xl md:text-5xl font-bold text-gray-900 mb-3">Student Testimonials</h2>
         </div>
-
         <div class="testimonials-scroll-container">
             <div class="gradient-overlay-left"></div>
-            <div class="gradient-overlay-right"></div>
-            
+            <div class="gradient-overlay-right"></div>            
             <div class="animate-infinite-scroll">
                 <?php
                 $testimonials = [
@@ -504,39 +389,23 @@
                         'rating' => 'assets/images/ratingStar.png',
                         'text' => 'I received assistance from Career Niti in understanding appropriate procedures based on the results for form filling. I was able to stay updated with live notifications. They organized Google meets to resolve the queries. The personnel was always willing to answer any questions.'
                     ]
-                ];
-                
-                $duplicatedTestimonials = array_merge($testimonials, $testimonials, $testimonials, $testimonials);
-                
+                ];   
+                $duplicatedTestimonials = array_merge($testimonials, $testimonials, $testimonials, $testimonials);                
                 foreach ($duplicatedTestimonials as $index => $testimonial) {
                     echo '
                     <div class="flex-shrink-0 w-80 md:w-96 px-4">
                         <div class="bg-white rounded-2xl shadow-xl border border-gray-100 p-6 md:p-8 h-full">
                             <div class="flex items-start space-x-4 md:space-x-6 mb-6">
-                                <img 
-                                    src="' . $testimonial['image'] . '" 
-                                    alt="' . $testimonial['name'] . '"
-                                    class="w-20 h-20 md:w-24 md:h-24 rounded-full object-cover border-4 border-white shadow-lg flex-shrink-0"
-                                />
+                                <img src="' . $testimonial['image'] . '"  alt="' . $testimonial['name'] . '"class="w-20 h-20 md:w-24 md:h-24 rounded-full object-cover border-4 border-white shadow-lg flex-shrink-0"/>
                                 <div>
-                                    <h3 class="text-xl md:text-2xl font-bold text-gray-900 mb-1">
-                                        ' . $testimonial['name'] . '
-                                    </h3>
-                                    <p class="text-blue-600 font-medium text-sm md:text-base">
-                                        ' . $testimonial['college'] . '
-                                    </p>
+                                    <h3 class="text-xl md:text-2xl font-bold text-gray-900 mb-1">' . $testimonial['name'] . '</h3>
+                                    <p class="text-blue-600 font-medium text-sm md:text-base"> ' . $testimonial['college'] . '</p>
                                     <div class="mt-2">
-                                        <img 
-                                            src="' . $testimonial['rating'] . '" 
-                                            alt="Rating" 
-                                            class="w-24 md:w-28 h-auto"
-                                        />
+                                        <img src="' . $testimonial['rating'] . '" alt="Rating" class="w-24 md:w-28 h-auto"/>
                                     </div>
                                 </div>
                             </div>
-                            <div class="text-gray-700 leading-relaxed text-sm md:text-base">
-                                "' . $testimonial['text'] . '"
-                            </div>
+                            <div class="text-gray-700 leading-relaxed text-sm md:text-base">"' . $testimonial['text'] . '"</div>
                         </div>
                     </div>';
                 }
@@ -544,15 +413,9 @@
             </div>
         </div>
     </div>
-
     <!-- Associations Section - Full Width -->
     <div class="associations-full-width bg-white py-12 md:py-16">
-        <div class="text-center mb-2 md:mb-12">
-            <h1 class="text-4xl font-bold text-center mb-2">
-                Associates With Us
-            </h1>
-        </div>
-
+        <div class="text-center mb-2 md:mb-12"> <h1 class="text-4xl font-bold text-center mb-2"> Associates With Us </h1></div>
         <div class="partners-marquee-container">
             <div class="partners-marquee-content space-x-8 md:space-x-12">
                 <?php
@@ -583,55 +446,38 @@
             </div>
         </div>
     </div>
-
     <!-- CTA Section -->
     <div class="bg-gradient-to-r from-orange-500 to-red-600 text-white py-12 md:py-16">
         <div class="container mx-auto px-4 sm:px-6 lg:px-8 text-center">
-            <h2 class="text-2xl sm:text-3xl md:text-4xl font-bold mb-4">
-                Ready to Transform Your Career?
-            </h2>
-            <p class="text-lg sm:text-xl opacity-90 mb-8 max-w-2xl mx-auto">
-                Take the first step towards your dream career with personalized guidance
-            </p>
+            <h2 class="text-2xl sm:text-3xl md:text-4xl font-bold mb-4">Ready to Transform Your Career?</h2>
+            <p class="text-lg sm:text-xl opacity-90 mb-8 max-w-2xl mx-auto">Take the first step towards your dream career with personalized guidance</p>
             <div class="flex flex-col sm:flex-row gap-4 justify-center">
-                <button class="px-6 py-3 bg-white text-orange-600 font-bold rounded-lg hover:bg-gray-100 transition-colors">
-                    Book Free Consultation
-                </button>
-                <button class="px-6 py-3 border-2 border-white text-white font-bold rounded-lg hover:bg-white/10 transition-colors">
-                    Explore All Services
-                </button>
+                <button class="px-6 py-3 bg-white text-orange-600 font-bold rounded-lg hover:bg-gray-100 transition-colors">Book Free Consultation</button>
+                <button class="px-6 py-3 border-2 border-white text-white font-bold rounded-lg hover:bg-white/10 transition-colors">Explore All Services</button>
             </div>
         </div>
-    </div>
-  
+    </div>  
     <?php include 'includes/footer.php'; ?>
-    
     <div id="hoverModal" class="fixed z-50">
         <div class="modal-arrow"></div>
         <div class="p-0"></div>
-    </div>
-    
+    </div>   
     <div id="mobileModal" class="fixed z-50">
         <div class="mobile-modal-content">
             <div class="p-4"></div>
         </div>
     </div>
-
     <script>
         let hoverTimer;
         let activeModal = null;
         let currentCategory = null;
-        let isMobile = window.innerWidth < 768;
-        
+        let isMobile = window.innerWidth < 768; 
         window.addEventListener('resize', () => {
             isMobile = window.innerWidth < 768;
-        });
-        
+        });   
         function handleCategoryHover(button, event) {
-            if (isMobile) return;
-            
-            clearTimeout(hoverTimer);
-            
+            if (isMobile) return;            
+            clearTimeout(hoverTimer);            
             hoverTimer = setTimeout(() => {
                 try {
                     const categoryData = parseCategoryData(button);
@@ -643,26 +489,21 @@
                     console.error('Error in hover handler:', error);
                 }
             }, 300);
-        }
-        
+        }      
         function handleCategoryLeave() {
-            if (isMobile) return;
-            
+            if (isMobile) return;            
             hoverTimer = setTimeout(() => {
                 const modal = document.getElementById('hoverModal');
                 if (modal && !modal.matches(':hover')) {
                     hideDesktopModal();
                 }
             }, 150);
-        }
-        
+        }        
         function handleCategoryClick(button, event) {
-            clearTimeout(hoverTimer);
-            
+            clearTimeout(hoverTimer);   
             try {
                 const categoryData = parseCategoryData(button);
-                currentCategory = categoryData;
-                
+                currentCategory = categoryData;                
                 if (isMobile) {
                     showMobileModal(categoryData);
                 } else {
@@ -672,8 +513,7 @@
                 console.error('Error in click handler:', error);
                 alert('Error loading category data. Please try again.');
             }
-        }
-        
+        }       
         function parseCategoryData(button) {
             try {
                 const dataString = button.getAttribute('data-category');
@@ -683,128 +523,85 @@
                 console.log('Raw data string:', button.getAttribute('data-category'));
                 return null;
             }
-        }
-        
+        } 
         function showDesktopModal(categoryData, event) {
-            clearTimeout(hoverTimer);
-            
+            clearTimeout(hoverTimer);            
             const modal = document.getElementById('hoverModal');
             const modalContent = modal.querySelector('.p-0');
-            const buttonRect = event.currentTarget.getBoundingClientRect();
-            
+            const buttonRect = event.currentTarget.getBoundingClientRect();  
             const modalWidth = 320;
             let left = buttonRect.left + (buttonRect.width / 2) - (modalWidth / 2);
-            let top = buttonRect.bottom + window.scrollY + 10;
-            
-            left = Math.max(20, Math.min(left, window.innerWidth - modalWidth - 20));
-            
+            let top = buttonRect.bottom + window.scrollY + 10;  
+            left = Math.max(20, Math.min(left, window.innerWidth - modalWidth - 20));     
             if (top + 400 > window.innerHeight + window.scrollY - 20) {
                 top = buttonRect.top + window.scrollY - 410;
-            }
-            
+            }            
             modal.style.left = left + 'px';
-            modal.style.top = top + 'px';
-            
-            modalContent.innerHTML = createModalContent(categoryData, false);
-            
+            modal.style.top = top + 'px';  
+            modalContent.innerHTML = createModalContent(categoryData, false);            
             modal.style.display = 'block';
-            activeModal = modal;
-            
+            activeModal = modal;            
             modal.addEventListener('mouseenter', () => clearTimeout(hoverTimer));
             modal.addEventListener('mouseleave', () => {
                 hoverTimer = setTimeout(hideDesktopModal, 150);
-            });
-            
-            initializeTabs(modal, categoryData);
-            
+            });           
+            initializeTabs(modal, categoryData);            
             const closeBtn = modalContent.querySelector('.close-desktop-modal');
             if (closeBtn) {
                 closeBtn.onclick = hideDesktopModal;
             }
         }
-        
         function showMobileModal(categoryData) {
             const modal = document.getElementById('mobileModal');
-            const content = modal.querySelector('.mobile-modal-content .p-4');
-            
-            content.innerHTML = createModalContent(categoryData, true);
-            
+            const content = modal.querySelector('.mobile-modal-content .p-4');            
+            content.innerHTML = createModalContent(categoryData, true);            
             modal.style.display = 'block';
-            activeModal = modal;
-            
-            initializeTabs(modal.querySelector('.mobile-modal-content'), categoryData);
-            
+            activeModal = modal;            
+            initializeTabs(modal.querySelector('.mobile-modal-content'), categoryData);            
             const closeBtn = content.querySelector('.close-mobile-modal');
             if (closeBtn) {
                 closeBtn.onclick = closeMobileModal;
             }
-        }
-        
+        }        
         function createModalContent(categoryData, isMobile) {
             const name = categoryData.name;
             const icon = categoryData.icon;
             const gradient = categoryData.gradient;
             const description = categoryData.description;
-            const categoryId = categoryData.id;
-            
+            const categoryId = categoryData.id;           
             return `
                 <div>
                     <div class="${gradient} p-4 text-white ${isMobile ? 'rounded-t-2xl' : 'rounded-t-lg'}">
                         <div class="flex items-center justify-between">
                             <div class="flex items-center gap-3">
-                                <div class="w-10 h-10 rounded-lg bg-white/20 flex items-center justify-center">
-                                    <span class="text-xl">${icon}</span>
-                                </div>
-                                <div>
-                                    <h3 class="text-lg font-bold">${name}</h3>
-                                    <p class="text-white/90 text-sm">${description}</p>
-                                </div>
+                                <div class="w-10 h-10 rounded-lg bg-white/20 flex items-center justify-center"><span class="text-xl">${icon}</span> </div>
+                                <div><h3 class="text-lg font-bold">${name}</h3><p class="text-white/90 text-sm">${description}</p></div>
                             </div>
-                            <button class="${isMobile ? 'close-mobile-modal' : 'close-desktop-modal'} w-8 h-8 flex items-center justify-center rounded-full hover:bg-white/20 transition-colors">
-                                <i class="fas fa-times"></i>
-                            </button>
+                            <button class="${isMobile ? 'close-mobile-modal' : 'close-desktop-modal'} w-8 h-8 flex items-center justify-center rounded-full hover:bg-white/20 transition-colors"><i class="fas fa-times"></i></button>
                         </div>
-                    </div>
-                    
+                    </div>                   
                     <div class="flex border-b">
-                        <button class="modal-tab active flex-1 py-3 text-center text-sm font-semibold" data-tab="courses">
-                            Courses
-                        </button>
-                        <button class="modal-tab flex-1 py-3 text-center text-sm font-semibold text-gray-600" data-tab="colleges">
-                            Colleges
-                        </button>
-                        <button class="modal-tab flex-1 py-3 text-center text-sm font-semibold text-gray-600" data-tab="exams">
-                            Exams
-                        </button>
-                    </div>
-                    
-                    <div class="hover-modal-content p-4 ${isMobile ? 'max-h-[50vh]' : ''}" id="modalContent">
-                        ${renderTabContent(categoryData.courses, 'courses')}
-                    </div>
-                    
-                    <div class="border-t p-4 bg-gray-50 ${isMobile ? 'rounded-b-2xl' : ''}">
-                        <a href="/careers/${categoryId}" class="block w-full py-3 text-center text-sm font-semibold text-white ${gradient.replace('bg-gradient-to-br', 'bg-gradient-to-r')} rounded-lg hover:shadow-lg transition-all">
-                            View all ${name} options
-                        </a>
+                        <button class="modal-tab active flex-1 py-3 text-center text-sm font-semibold" data-tab="courses"> Courses</button>
+                        <button class="modal-tab flex-1 py-3 text-center text-sm font-semibold text-gray-600" data-tab="colleges">Colleges</button>
+                        <button class="modal-tab flex-1 py-3 text-center text-sm font-semibold text-gray-600" data-tab="exams">Exams </button>
+                    </div>                   
+                    <div class="hover-modal-content p-4 ${isMobile ? 'max-h-[50vh]' : ''}" id="modalContent"> ${renderTabContent(categoryData.courses, 'courses')}</div>                    
+                    <div class="border-t p-4 bg-gray-50 ${isMobile ? 'rounded-b-2xl' : ''}"><a href="/careers/${categoryId}" class="block w-full py-3 text-center text-sm font-semibold text-white ${gradient.replace('bg-gradient-to-br', 'bg-gradient-to-r')} rounded-lg hover:shadow-lg transition-all">View all ${name} options</a>
                     </div>
                 </div>
             `;
-        }
-        
+        }      
         function renderTabContent(items, tabType) {
             let content = '';
             const colors = {
                 'courses': { bg: 'bg-orange-100', text: 'text-orange-600' },
                 'colleges': { bg: 'bg-blue-100', text: 'text-blue-600' },
                 'exams': { bg: 'bg-green-100', text: 'text-green-600' }
-            };
-            
+            };           
             const color = colors[tabType] || colors.courses;
-            
             if (!items || items.length === 0) {
                 return '<p class="text-gray-500 text-center p-4">No data available</p>';
-            }
-            
+            }            
             items.forEach((item, index) => {
                 if (index < 5) {
                     const safeItem = item.replace(/'/g, "\\'").replace(/"/g, '&quot;');
@@ -824,23 +621,19 @@
             });
             
             return content;
-        }
-        
+        }       
         function initializeTabs(container, categoryData) {
             const tabButtons = container.querySelectorAll('.modal-tab');
-            const contentDiv = container.querySelector('#modalContent');
-            
+            const contentDiv = container.querySelector('#modalContent');       
             tabButtons.forEach(button => {
                 button.addEventListener('click', () => {
-                    const tab = button.getAttribute('data-tab');
-                    
+                    const tab = button.getAttribute('data-tab');    
                     tabButtons.forEach(btn => {
                         btn.classList.remove('active', 'text-orange-600');
                         btn.classList.add('text-gray-600');
                     });
                     button.classList.add('active', 'text-orange-600');
-                    button.classList.remove('text-gray-600');
-                    
+                    button.classList.remove('text-gray-600');  
                     const items = categoryData[tab];
                     if (items) {
                         contentDiv.innerHTML = renderTabContent(items, tab);
@@ -849,8 +642,7 @@
                     }
                 });
             });
-        }
-        
+        }   
         function hideDesktopModal() {
             const modal = document.getElementById('hoverModal');
             if (modal) {
@@ -858,8 +650,7 @@
                 activeModal = null;
                 currentCategory = null;
             }
-        }
-        
+        }  
         function closeMobileModal() {
             const modal = document.getElementById('mobileModal');
             if (modal) {
@@ -867,8 +658,7 @@
                 activeModal = null;
                 currentCategory = null;
             }
-        }
-        
+        } 
         function selectItem(item, type) {
             console.log(`Selected ${type}: ${item}`);
             alert(`You selected: ${item}`);
@@ -879,18 +669,15 @@
                 hideDesktopModal();
             }
         }
-        
         document.addEventListener('DOMContentLoaded', function() {
             const searchInput = document.querySelector('input[type="text"]');
             const searchButton = searchInput.nextElementSibling;
-            
             searchButton.addEventListener('click', function() {
                 const searchTerm = searchInput.value.trim();
                 if (searchTerm) {
                     window.location.href = `/search.php?q=${encodeURIComponent(searchTerm)}`;
                 }
-            });
-            
+            });  
             searchInput.addEventListener('keypress', function(e) {
                 if (e.key === 'Enter') {
                     const searchTerm = searchInput.value.trim();
@@ -898,36 +685,30 @@
                         window.location.href = `/search.php?q=${encodeURIComponent(searchTerm)}`;
                     }
                 }
-            });
-            
+            });  
             console.log('CareerNiti Platform Loaded');
             console.log('Is mobile:', isMobile);
             console.log('Testing all 3 categories...');
-            
             const buttons = document.querySelectorAll('.category-button');
             buttons.forEach((button, index) => {
                 const data = parseCategoryData(button);
                 console.log(`Button ${index + 1} (${data?.name}):`, data ? '✓ Valid' : '✗ Invalid');
             });
-        });
-        
+        });       
         document.addEventListener('click', (e) => {
             const desktopModal = document.getElementById('hoverModal');
             const mobileModal = document.getElementById('mobileModal');
-            
             if (desktopModal && desktopModal.style.display === 'block' && 
                 !e.target.closest('.category-button') && 
                 !desktopModal.contains(e.target)) {
                 hideDesktopModal();
             }
-            
             if (mobileModal && mobileModal.style.display === 'block' && 
                 !e.target.closest('.category-button') && 
                 !mobileModal.contains(e.target)) {
                 closeMobileModal();
             }
         });
-        
         window.addEventListener('scroll', () => {
             if (activeModal) {
                 if (isMobile) {
@@ -937,7 +718,6 @@
                 }
             }
         });
-        
         document.addEventListener('keydown', (e) => {
             if (e.key === 'Escape' && activeModal) {
                 if (isMobile) {
@@ -946,10 +726,7 @@
                     hideDesktopModal();
                 }
             }
-        });
-        
-        console.log('All systems ready! Click any category button to test.');
+        });   
     </script>
-   
 </body>
 </html>
