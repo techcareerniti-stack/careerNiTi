@@ -37,7 +37,7 @@
     
     <!-- Header -->
     <div class="relative text-center py-8 bg-gradient-to-r from-orange-400 to-pink-600 text-white">
-        <h1 class="text-2xl sm:text-3xl md:text-4xl font-bold px-4">Contact Us</h1>
+        <h1 class="text-2xl sm:text-3xl md:text-4xl font-bold px-4">Contacts Us</h1>
     </div>
     
     <!-- Main Content -->
