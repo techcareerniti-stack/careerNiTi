@@ -4,15 +4,285 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>CareerNiti</title>
-    <link rel="stylesheet" href="assets/css/output.css">
-    <link rel="stylesheet" href="assets/css/index.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="icon" type="image/png" href="./assets/images/title-logo.png">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">  
+    <!-- Tailwind CSS -->
+    <link href="./assets/css/output.css" rel="stylesheet">
+    <style>
+        #hoverModal {
+            display: none;
+            position: fixed;
+            z-index: 9999;
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+            border: 1px solid #e5e7eb;
+            min-width: 300px;
+            max-width: 350px;
+            animation: fadeIn 0.2s ease-out;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(-10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .modal-arrow {
+            position: absolute;
+            top: -30px;
+            left: 50%;
+            transform: translateX(-50%) rotate(45deg);
+            width: 16px;
+            height: 16px;
+            background: white;
+            border-left: 1px solid #e5e7eb;
+            border-top: 1px solid #e5e7eb;
+        }
+        
+        .hover-modal-content {
+            max-height: 400px;
+            overflow-y: auto;
+        }
+        
+        .hover-modal-content::-webkit-scrollbar {
+            width: 4px;
+        }
+        
+        .hover-modal-content::-webkit-scrollbar-track {
+            background: #f1f1f1;
+            border-radius: 4px;
+        }
+        
+        .hover-modal-content::-webkit-scrollbar-thumb {
+            background: #c1c1c1;
+            border-radius: 4px;
+        }
+        
+        #mobileModal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 10000;
+            background: rgba(0,0,0,0.5);
+        }
+        
+        .mobile-modal-content {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: white;
+            border-radius: 20px 20px 0 0;
+            max-height: 80vh;
+            animation: slideUp 0.3s ease-out;
+        }
+        
+        @keyframes slideUp {
+            from { transform: translateY(100%); }
+            to { transform: translateY(0); }
+        }
+        
+        .modal-tab {
+            transition: all 0.2s ease;
+        }
+        
+        .modal-tab.active {
+            color: #ea580c;
+            border-bottom: 2px solid #ea580c;
+        }
+        
+        .modal-item {
+            transition: all 0.2s ease;
+        }
+        
+        .modal-item:hover {
+            background-color: #fff7ed;
+            border-color: #fed7aa;
+        }
+        
+        /* Infinite scroll styles */
+        .marquee-container {
+            overflow: hidden;
+            white-space: nowrap;
+            position: relative;
+        }
+        
+        .marquee-content {
+            display: inline-block;
+            white-space: nowrap;
+            animation: marquee 30s linear infinite;
+        }
+        
+        .marquee-content:hover {
+            animation-play-state: paused;
+        }
+        
+        @keyframes marquee {
+            0% {
+                transform: translateX(0);
+            }
+            100% {
+                transform: translateX(-50%);
+            }
+        }
+        
+        /* Partners marquee */
+        .partners-marquee-container {
+            overflow: hidden;
+            position: relative;
+        }
+        
+        .partners-marquee-content {
+            display: flex;
+            animation: partnersMarquee 25s linear infinite;
+        }
+        
+        .partners-marquee-content:hover {
+            animation-play-state: paused;
+        }
+        
+        @keyframes partnersMarquee {
+            0% {
+                transform: translateX(0);
+            }
+            100% {
+                transform: translateX(-50%);
+            }
+        }
+        
+        /* Testimonials infinite scroll */
+        @keyframes infiniteScroll {
+            0% {
+                transform: translateX(0);
+            }
+            100% {
+                transform: translateX(calc(-320px * 7));
+            }
+        }
+        
+        .testimonials-scroll-container {
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .animate-infinite-scroll {
+            display: flex;
+            animation: infiniteScroll 120s linear infinite;
+            width: max-content;
+        }
+        
+        .animate-infinite-scroll:hover {
+            animation-play-state: paused;
+        }
+        
+        .gradient-overlay-left {
+            position: absolute;
+            left: 0;
+            top: 0;
+            bottom: 0;
+            width: 60px;
+            background: linear-gradient(to right, #f9fafb, transparent);
+            z-index: 10;
+            pointer-events: none;
+        }
+        
+        .gradient-overlay-right {
+            position: absolute;
+            right: 0;
+            top: 0;
+            bottom: 0;
+            width: 60px;
+            background: linear-gradient(to left, #f9fafb, transparent);
+            z-index: 10;
+            pointer-events: none;
+        }
+        
+        /* Remove side margins/padding for specific sections */
+        .testimonials-full-width {
+            margin-left: calc(50% - 50vw);
+            margin-right: calc(50% - 50vw);
+            width: 100vw;
+            position: relative;
+            left: 50%;
+            right: 50%;
+            transform: translateX(-50%);
+        }
+        
+        .associations-full-width {
+            margin-left: calc(50% - 50vw);
+            margin-right: calc(50% - 50vw);
+            width: 100vw;
+            position: relative;
+            left: 50%;
+            right: 50%;
+            transform: translateX(-50%);
+        }
+        
+        @media (max-width: 768px) {
+            #hoverModal {
+                display: none !important;
+            }
+            
+            .marquee-content {
+                animation: marquee 20s linear infinite;
+            }
+            
+            .partners-marquee-content {
+                animation: partnersMarquee 20s linear infinite;
+            }
+            
+            @keyframes infiniteScroll {
+                0% {
+                    transform: translateX(0);
+                }
+                100% {
+                    transform: translateX(calc(-288px * 7));
+                }
+            }
+            
+            .animate-infinite-scroll {
+                animation-duration: 140s;
+            }
+            
+            .gradient-overlay-left,
+            .gradient-overlay-right {
+                width: 40px;
+            }
+        }
+        
+        @media (max-width: 640px) {
+            @keyframes infiniteScroll {
+                0% {
+                    transform: translateX(0);
+                }
+                100% {
+                    transform: translateX(calc(-256px * 7));
+                }
+            }
+            
+            .animate-infinite-scroll {
+                animation-duration: 160s;
+            }
+            
+            .gradient-overlay-left,
+            .gradient-overlay-right {
+                width: 30px;
+            }
+        }
+        
+        /* Poppins font */
+        .poppins-regular {
+            font-family: 'Poppins', sans-serif;
+        }
+    </style>
 </head>
 <body>
-<?php include 'includes/navbar.php'; ?> 
- <?php
+<?php include './includes/navbar.php'; ?> 
+<?php
     $quickCategories = [
         [
             'id' => 'engineering',
@@ -109,11 +379,62 @@
                 'BHU UET',
                 'DU Entrance Exam'
             ]
+        ],
+        [
+            'id' => 'engineering-predictor',
+            'name' => 'Engineering College Predictor',
+            'icon' => '⚙️',
+            'category' => 'engineering',
+            'gradient' => 'bg-gradient-to-br from-purple-400 via-purple-500 to-pink-600',
+            'description' => 'Predict your engineering college based on rank',
+            'courses' => [
+                'JEE Main Rank Based Prediction',
+                'JEE Advanced Rank Based Prediction',
+                'State CET Rank Prediction',
+                'Private College Prediction'
+            ],
+            'colleges' => [
+                'IIT College Predictor',
+                'NIT College Predictor',
+                'IIIT College Predictor',
+                'State Government College Predictor'
+            ],
+            'exams' => [
+                'JEE Main',
+                'JEE Advanced',
+                'State Engineering Entrance Exams'
+            ]
+        ],
+        [
+            'id' => 'medical-predictor',
+            'name' => 'Medical College Predictor',
+            'icon' => '🩺',
+            'category' => 'medical',
+            'gradient' => 'bg-gradient-to-br from-pink-400 via-pink-500 to-red-600',
+            'description' => 'Predict your medical college based on NEET rank',
+            'courses' => [
+                'MBBS College Prediction',
+                'BDS College Prediction',
+                'Ayurveda College Prediction',
+                'Nursing College Prediction'
+            ],
+            'colleges' => [
+                'AIIMS College Predictor',
+                'Government Medical College Predictor',
+                'Private Medical College Predictor',
+                'Deemed University Predictor'
+            ],
+            'exams' => [
+                'NEET UG',
+                'NEET PG',
+                'State Medical Entrance Exams'
+            ]
         ]
     ];
     ?>
     <div class="relative h-[500px] w-full mb-7">
-        <div class="absolute inset-0 bg-cover bg-center h-full w-full" style="background-image: url('assets/images/misssion.jpg');">
+        <div class="absolute inset-0 bg-cover bg-center h-full w-full"
+         style="background-image: url('assets/images/misssion.jpg');">
             <div class="absolute inset-0 bg-black/40"></div>
         </div>
         <div class="relative h-full flex flex-col items-center justify-center px-4">
@@ -121,32 +442,52 @@
             <h2 class="text-3xl md:text-4xl text-white font-bold">Careerniti</h2>
             <p class="text-white text-lg mb-8 opacity-90">Guide your future with us</p>
             <div class="w-full max-w-3xl relative mb-20 text-white">
-                <input type="text" placeholder="Search for careers..." class="w-full px-6 py-4 rounded-full text-lg focus:outline-none shadow-lg focus:ring-2 focus:ring-orange-400 text-gray-800"/>
-                <button class="absolute right-4 top-1/2 -translate-y-1/2">
-                    <svg class="w-6 h-6 text-gray-500 hover:text-orange-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/>
-                    </svg>
-                </button>
-            </div>
-            <div class="w-full max-w-4xl mt-6">
-                <div class="flex flex-wrap justify-center gap-4">
-                    <?php foreach ($quickCategories as $item): ?>
-                    <button type="button" class="flex items-center justify-center gap-1 bg-white/10 backdrop-blur-sm text-white border border-white/20 shadow-md rounded-lg flex-1 min-w-0 py-2 sm:py-3 text-[10px] sm:text-sm md:text-base [&>span:first-child]:text-sm sm:[&>span:first-child]:text-xl hover:bg-white/20 transition-all duration-300 category-button"
-                        data-category='<?php echo htmlspecialchars(json_encode($item), ENT_QUOTES, 'UTF-8'); ?>'
-                        onmouseenter="handleCategoryHover(this, event)"
-                        onmouseleave="handleCategoryLeave()"
-                        onclick="handleCategoryClick(this, event)">
-                     <span class="text-xl"><?php echo $item['icon']; ?></span>
-                        <span class="font-semibold whitespace-nowrap">
-                            <?php echo htmlspecialchars($item['name']); ?>
-                        </span>
-                    </button>
-                    <?php endforeach; ?>
+                <input type="text" placeholder="Search for careers..." 
+                class="w-full px-6 py-4 rounded-full text-lg focus:outline-none shadow-lg focus:ring-2 
+                focus:ring-orange-400 text-white-800 border border-black"/>
+                
+                <!-- Buttons -->
+                <div class="w-full max-w-4xl mt-12 flex flex-col items-center gap-4">
+                    <!-- Row 1: 3 buttons -->
+                    <div class="flex flex-wrap justify-center gap-4 w-full">
+                        <?php foreach (array_slice($quickCategories, 0, 3) as $item): ?>
+                        <button type="button"
+                            class="flex items-center justify-center gap-1 bg-gradient-to-r
+                             from-orange-500 to-pink-500 text-white border border-white/20 shadow-md 
+                             rounded-lg flex-1 min-w-[120px] py-2 sm:py-3 text-[10px] 
+                             sm:text-sm md:text-base [&>span:first-child]:text-sm sm:[&>span:first-child]:text-xl
+                              hover:bg-white/20 transition-all duration-300 category-button"
+                            data-category='<?php echo htmlspecialchars(json_encode($item), ENT_QUOTES, 'UTF-8'); ?>'
+                            onclick="handleCategoryClick(this, event)">
+                            <span class="text-xl"><?php echo $item['icon']; ?></span>
+                            <span class="font-semibold whitespace-nowrap"><?php echo htmlspecialchars($item['name']); ?></span>
+                        </button>
+                        <?php endforeach; ?>
+                    </div>
+
+                    <!-- Row 2: 2 buttons -->
+                    <div class="flex flex-wrap justify-center gap-4 w-full">
+                        <?php foreach (array_slice($quickCategories, 3, 2) as $item): ?>
+                        <button type="button"
+                            class="flex items-center bg-gradient-to-r from-blue-500 to-pink-500 
+                            justify-center gap-1 
+                            text-white border border-white/20 shadow-md rounded-lg flex-1 
+                            min-w-[120px] py-2 sm:py-3 text-[10px] sm:text-sm 
+                            md:text-base [&>span:first-child]:text-sm sm:[&>span:first-child]:text-xl 
+                            hover:bg-white/20 transition-all duration-300 category-button"
+                            data-category='<?php echo htmlspecialchars(json_encode($item), ENT_QUOTES, 'UTF-8'); ?>'
+                            onclick="handleCategoryClick(this, event)">
+                            <span class="text-xl"><?php echo $item['icon']; ?></span>
+                            <span class="font-semibold whitespace-nowrap"><?php echo htmlspecialchars($item['name']); ?></span>
+                        </button>
+                        <?php endforeach; ?>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
- <!-- Notification & Updates Section -->
+
+    <!-- Notification & Updates Section -->
     <div class="container mx-auto px-4 sm:px-6 lg:px-8 mb-12 md:mb-16">
         <div class="text-center mb-8 md:mb-12">
             <h2 class="text-2xl sm:text-3xl md:text-4xl font-bold text-gray-900 mb-3"> Notification & Updates</h2>
@@ -176,6 +517,7 @@
             </div>
         </div>
     </div>
+
     <!-- Top to Explore Section -->
     <div class="container mx-auto px-4 sm:px-6 lg:px-8 ">
         <h1 class="text-4xl font-bold text-center mb-3">Top to Explore</h1>    
@@ -275,6 +617,7 @@
             </div>
         </div>
     </div>
+
     <!-- Our Services Section -->
     <div class="container mx-auto px-4 sm:px-6 lg:px-8 py-12 md:py-16">
         <div class="text-center mb-6 md:mb-16">
@@ -310,6 +653,7 @@
             </div>
         </div>
     </div>
+
     <!-- Statistics Section -->
     <div class="bg-orange-500 text-white py-12 md:py-16">
         <div class="container mx-auto px-4 sm:px-6 lg:px-8">
@@ -329,6 +673,7 @@
             </div>
         </div>
     </div>
+
     <!-- Student Testimonials Section - Full Width -->
     <div class="testimonials-full-width bg-gradient-to-b from-gray-50 to-white py-12 md:py-16 overflow-hidden">
         <div class="text-center mb-10 md:mb-14">
@@ -413,6 +758,7 @@
             </div>
         </div>
     </div>
+
     <!-- Associations Section - Full Width -->
     <div class="associations-full-width bg-white py-12 md:py-16">
         <div class="text-center mb-2 md:mb-12"> <h1 class="text-4xl font-bold text-center mb-2"> Associates With Us </h1></div>
@@ -446,6 +792,7 @@
             </div>
         </div>
     </div>
+
     <!-- CTA Section -->
     <div class="bg-gradient-to-r from-orange-500 to-red-600 text-white py-12 md:py-16">
         <div class="container mx-auto px-4 sm:px-6 lg:px-8 text-center">
@@ -457,50 +804,35 @@
             </div>
         </div>
     </div>  
+
     <?php include 'includes/footer.php'; ?>
+
+    <!-- Desktop Modal -->
     <div id="hoverModal" class="fixed z-50">
         <div class="modal-arrow"></div>
         <div class="p-0"></div>
     </div>   
+    
+    <!-- Mobile Modal -->
     <div id="mobileModal" class="fixed z-50">
         <div class="mobile-modal-content">
             <div class="p-4"></div>
         </div>
     </div>
+
     <script>
-        let hoverTimer;
         let activeModal = null;
         let currentCategory = null;
         let isMobile = window.innerWidth < 768; 
+        
         window.addEventListener('resize', () => {
             isMobile = window.innerWidth < 768;
         });   
-        function handleCategoryHover(button, event) {
-            if (isMobile) return;            
-            clearTimeout(hoverTimer);            
-            hoverTimer = setTimeout(() => {
-                try {
-                    const categoryData = parseCategoryData(button);
-                    currentCategory = categoryData;
-                    if (categoryData) {
-                        showDesktopModal(categoryData, event);
-                    }
-                } catch (error) {
-                    console.error('Error in hover handler:', error);
-                }
-            }, 300);
-        }      
-        function handleCategoryLeave() {
-            if (isMobile) return;            
-            hoverTimer = setTimeout(() => {
-                const modal = document.getElementById('hoverModal');
-                if (modal && !modal.matches(':hover')) {
-                    hideDesktopModal();
-                }
-            }, 150);
-        }        
+        
         function handleCategoryClick(button, event) {
-            clearTimeout(hoverTimer);   
+            event.preventDefault();
+            event.stopPropagation();
+            
             try {
                 const categoryData = parseCategoryData(button);
                 currentCategory = categoryData;                
@@ -514,6 +846,7 @@
                 alert('Error loading category data. Please try again.');
             }
         }       
+        
         function parseCategoryData(button) {
             try {
                 const dataString = button.getAttribute('data-category');
@@ -524,33 +857,31 @@
                 return null;
             }
         } 
+        
         function showDesktopModal(categoryData, event) {
-            clearTimeout(hoverTimer);            
             const modal = document.getElementById('hoverModal');
             const modalContent = modal.querySelector('.p-0');
-            const buttonRect = event.currentTarget.getBoundingClientRect();  
-            const modalWidth = 320;
-            let left = buttonRect.left + (buttonRect.width / 2) - (modalWidth / 2);
-            let top = buttonRect.bottom + window.scrollY + 10;  
-            left = Math.max(20, Math.min(left, window.innerWidth - modalWidth - 20));     
-            if (top + 400 > window.innerHeight + window.scrollY - 20) {
-                top = buttonRect.top + window.scrollY - 410;
-            }            
-            modal.style.left = left + 'px';
-            modal.style.top = top + 'px';  
+            
+            // Fixed position at top center
+            modal.style.position = 'fixed';
+            modal.style.top = '80px'; // 80px from top for better visibility
+            modal.style.left = '50%';
+            modal.style.transform = 'translateX(-50%)';
+            
             modalContent.innerHTML = createModalContent(categoryData, false);            
             modal.style.display = 'block';
             activeModal = modal;            
-            modal.addEventListener('mouseenter', () => clearTimeout(hoverTimer));
-            modal.addEventListener('mouseleave', () => {
-                hoverTimer = setTimeout(hideDesktopModal, 150);
-            });           
+            
             initializeTabs(modal, categoryData);            
             const closeBtn = modalContent.querySelector('.close-desktop-modal');
             if (closeBtn) {
                 closeBtn.onclick = hideDesktopModal;
             }
+            
+            // Prevent body scroll when modal is open
+            document.body.style.overflow = 'hidden';
         }
+        
         function showMobileModal(categoryData) {
             const modal = document.getElementById('mobileModal');
             const content = modal.querySelector('.mobile-modal-content .p-4');            
@@ -562,7 +893,11 @@
             if (closeBtn) {
                 closeBtn.onclick = closeMobileModal;
             }
+            
+            // Prevent body scroll when modal is open
+            document.body.style.overflow = 'hidden';
         }        
+        
         function createModalContent(categoryData, isMobile) {
             const name = categoryData.name;
             const icon = categoryData.icon;
@@ -585,12 +920,13 @@
                         <button class="modal-tab flex-1 py-3 text-center text-sm font-semibold text-gray-600" data-tab="colleges">Colleges</button>
                         <button class="modal-tab flex-1 py-3 text-center text-sm font-semibold text-gray-600" data-tab="exams">Exams </button>
                     </div>                   
-                    <div class="hover-modal-content p-4 ${isMobile ? 'max-h-[50vh]' : ''}" id="modalContent"> ${renderTabContent(categoryData.courses, 'courses')}</div>                    
+                    <div class="hover-modal-content p-4" id="modalContent">${renderTabContent(categoryData.courses, 'courses')}</div>                    
                     <div class="border-t p-4 bg-gray-50 ${isMobile ? 'rounded-b-2xl' : ''}"><a href="/careers/${categoryId}" class="block w-full py-3 text-center text-sm font-semibold text-white ${gradient.replace('bg-gradient-to-br', 'bg-gradient-to-r')} rounded-lg hover:shadow-lg transition-all">View all ${name} options</a>
                     </div>
                 </div>
             `;
         }      
+        
         function renderTabContent(items, tabType) {
             let content = '';
             const colors = {
@@ -622,6 +958,7 @@
             
             return content;
         }       
+        
         function initializeTabs(container, categoryData) {
             const tabButtons = container.querySelectorAll('.modal-tab');
             const contentDiv = container.querySelector('#modalContent');       
@@ -629,11 +966,12 @@
                 button.addEventListener('click', () => {
                     const tab = button.getAttribute('data-tab');    
                     tabButtons.forEach(btn => {
-                        btn.classList.remove('active', 'text-orange-600');
+                        btn.classList.remove('active');
                         btn.classList.add('text-gray-600');
                     });
-                    button.classList.add('active', 'text-orange-600');
-                    button.classList.remove('text-gray-600');  
+                    button.classList.add('active');
+                    button.classList.remove('text-gray-600');
+                    
                     const items = categoryData[tab];
                     if (items) {
                         contentDiv.innerHTML = renderTabContent(items, tab);
@@ -643,22 +981,29 @@
                 });
             });
         }   
+        
         function hideDesktopModal() {
             const modal = document.getElementById('hoverModal');
             if (modal) {
                 modal.style.display = 'none';
                 activeModal = null;
                 currentCategory = null;
+                // Restore body scroll
+                document.body.style.overflow = '';
             }
         }  
+        
         function closeMobileModal() {
             const modal = document.getElementById('mobileModal');
             if (modal) {
                 modal.style.display = 'none';
                 activeModal = null;
                 currentCategory = null;
+                // Restore body scroll
+                document.body.style.overflow = '';
             }
         } 
+        
         function selectItem(item, type) {
             console.log(`Selected ${type}: ${item}`);
             alert(`You selected: ${item}`);
@@ -669,55 +1014,58 @@
                 hideDesktopModal();
             }
         }
+        
         document.addEventListener('DOMContentLoaded', function() {
             const searchInput = document.querySelector('input[type="text"]');
             const searchButton = searchInput.nextElementSibling;
-            searchButton.addEventListener('click', function() {
-                const searchTerm = searchInput.value.trim();
-                if (searchTerm) {
-                    window.location.href = `/search.php?q=${encodeURIComponent(searchTerm)}`;
-                }
-            });  
-            searchInput.addEventListener('keypress', function(e) {
-                if (e.key === 'Enter') {
+            if (searchButton) {
+                searchButton.addEventListener('click', function() {
                     const searchTerm = searchInput.value.trim();
                     if (searchTerm) {
                         window.location.href = `/search.php?q=${encodeURIComponent(searchTerm)}`;
                     }
-                }
-            });  
+                });
+            }
+            
+            if (searchInput) {
+                searchInput.addEventListener('keypress', function(e) {
+                    if (e.key === 'Enter') {
+                        const searchTerm = searchInput.value.trim();
+                        if (searchTerm) {
+                            window.location.href = `/search.php?q=${encodeURIComponent(searchTerm)}`;
+                        }
+                    }
+                });
+            }
+            
             console.log('CareerNiti Platform Loaded');
             console.log('Is mobile:', isMobile);
-            console.log('Testing all 3 categories...');
-            const buttons = document.querySelectorAll('.category-button');
-            buttons.forEach((button, index) => {
-                const data = parseCategoryData(button);
-                console.log(`Button ${index + 1} (${data?.name}):`, data ? '✓ Valid' : '✗ Invalid');
-            });
-        });       
-        document.addEventListener('click', (e) => {
-            const desktopModal = document.getElementById('hoverModal');
-            const mobileModal = document.getElementById('mobileModal');
-            if (desktopModal && desktopModal.style.display === 'block' && 
-                !e.target.closest('.category-button') && 
-                !desktopModal.contains(e.target)) {
-                hideDesktopModal();
-            }
-            if (mobileModal && mobileModal.style.display === 'block' && 
-                !e.target.closest('.category-button') && 
-                !mobileModal.contains(e.target)) {
-                closeMobileModal();
-            }
-        });
-        window.addEventListener('scroll', () => {
-            if (activeModal) {
-                if (isMobile) {
-                    closeMobileModal();
-                } else {
+            
+            // Close modals when clicking outside
+            document.addEventListener('click', (e) => {
+                const desktopModal = document.getElementById('hoverModal');
+                const mobileModal = document.getElementById('mobileModal');
+                
+                if (desktopModal && desktopModal.style.display === 'block' && 
+                    !e.target.closest('.category-button') && 
+                    !desktopModal.contains(e.target)) {
                     hideDesktopModal();
                 }
+                
+                if (mobileModal && mobileModal.style.display === 'block' && 
+                    !e.target.closest('.category-button') && 
+                    !mobileModal.contains(e.target)) {
+                    closeMobileModal();
+                }
+            });
+        });
+        
+        window.addEventListener('scroll', () => {
+            if (activeModal && !isMobile) {
+                hideDesktopModal();
             }
         });
+        
         document.addEventListener('keydown', (e) => {
             if (e.key === 'Escape' && activeModal) {
                 if (isMobile) {
@@ -726,7 +1074,7 @@
                     hideDesktopModal();
                 }
             }
-        });   
+        });
     </script>
 </body>
 </html>
