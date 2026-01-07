@@ -1,0 +1,66 @@
+CREATE DATABASE IF NOT EXISTS careerniti;
+USE careerniti;
+
+-- ===============================
+-- Admission Programs
+-- ===============================
+CREATE TABLE admission_programs (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    program_key VARCHAR(50) UNIQUE NOT NULL,
+    title VARCHAR(100) NOT NULL,
+    image_path VARCHAR(255) NOT NULL,
+    alt_text VARCHAR(255),
+    display_order INT DEFAULT 0,
+    is_active BOOLEAN DEFAULT TRUE
+) ENGINE=InnoDB;
+
+-- ===============================
+-- Admission Processes
+-- ===============================
+CREATE TABLE admission_processes (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    program_type ENUM('UG', 'PG') NOT NULL,
+    program_id INT NOT NULL,
+    process_key VARCHAR(100) NOT NULL,
+    title VARCHAR(200) NOT NULL,
+    image_path VARCHAR(255) NOT NULL,
+    alt_text VARCHAR(255),
+    description TEXT,
+    eligibility TEXT,
+    reservation_policy TEXT,
+    fees TEXT,
+    process_flow TEXT,
+    faqs TEXT,
+    display_order INT DEFAULT 0,
+    is_active BOOLEAN DEFAULT TRUE,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+
+    CONSTRAINT fk_program
+        FOREIGN KEY (program_id)
+        REFERENCES admission_programs(id)
+        ON DELETE CASCADE,
+
+    UNIQUE KEY unique_process (program_type, program_id, process_key),
+    INDEX idx_program (program_id),
+    INDEX idx_active (is_active)
+) ENGINE=InnoDB;
+
+-- ===============================
+-- Process Sections
+-- ===============================
+CREATE TABLE process_sections (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    process_id INT NOT NULL,
+    section_type VARCHAR(50) NOT NULL, 
+    title VARCHAR(200),
+    content TEXT,
+    display_order INT DEFAULT 0,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+
+    CONSTRAINT fk_process
+        FOREIGN KEY (process_id)
+        REFERENCES admission_processes(id)
+        ON DELETE CASCADE
+) ENGINE=InnoDB;
+
